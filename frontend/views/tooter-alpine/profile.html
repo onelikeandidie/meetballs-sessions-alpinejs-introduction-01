@@ -1,0 +1,44 @@
+{% extends "tooter/layout.html" %}
+
+{% block content %}
+  <div
+    class="flex gap-8 items-start justify-center py-8"
+    x-data='{
+      toots: {{ toots | dump }},
+      fetchToots() {
+        axios.get("/tooter/toots").then((response) => {
+          this.toots = response.data;
+        }).catch(console.log);
+      }
+    }'
+    x-init='setInterval(async () => {await fetchToots()}, 5000)'>
+    <a href="/tooter">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+      </svg>
+    </a>
+    <ul class="flex flex-col gap-4 text-black">
+      <template x-for='toot in toots'>
+        <li x-bind:id="toot.id" class="p-4 rounded bg-gray-200 min-w-96">
+          <p class="text-lg"
+            x-text='toot.content'>
+          </p>
+          <div class="flex gap-4">
+            <a class="hover:underline"
+              x-text='"@" + toot.author'
+              x-bind:href='"/tooter/" + toot.author'>
+            </a>
+            <p class="text-gray-800 text-sm"
+              x-text='((new Date() - new Date(toot.date)) < 3600 * 1000) ? (humanizeDuration(new Date() - new Date(toot.date), { round: true }) + " ago") : (new Date(toot.date)).toLocaleString()'>
+            </p>
+          </div>
+        </li>
+      </template>
+      <template x-if='toots.length == 0'>
+        <p class='p-4 text-white'>
+          No toots!
+        </p>
+      </template>
+    </ul>
+  </div>
+{% endblock %}

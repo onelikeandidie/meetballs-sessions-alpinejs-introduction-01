@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "ignore": ["vite.config.js**", "database.json"]
+}

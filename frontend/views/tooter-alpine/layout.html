@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <div class="bg-gray-800 w-full p-4">
+    <div class="mx-auto container flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-blue-400">
+        <a href="/tooter">
+        Tooter
+        </a>
+      </h1>
+      <div class="flex gap-4 text-white">
+        <a class="text-gray-200 hover:underline"
+          href="/tooter/{{ user }}">
+          @{{ user }}
+        </a>
+        <a class="hover:underline" href="/tooter/logout">
+          Logout
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 inline-block">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="bg-gray-800 w-full">
+    <div class="mx-auto container">
+      {% if error %}
+        <p class="px-2 py-1 mb-4 rounded bg-red-200 border border-red-400 text-black">
+          {{ error }}
+        </p>
+      {% endif %}
+      {% if success %}
+        <p class="px-2 py-1 mb-4 rounded bg-green-200 border border-green-400 text-black">
+          {{ success }}
+        </p>
+      {% endif %}
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "tooter/layout.html" %}
+
+{% block body %}
+<div class="flex items-center justify-center h-screen w-screen bg-gray-800">
+  <form class="flex flex-col gap-4 rounded bg-gray-900 text-white p-4"
+        action="/tooter/login"
+        method="POST">
+    <label class="text-lg" for="username">
+      Username
+    </label>
+    <input type="text" id="username" name="username"
+           class="px-2 py-1 rounded bg-gray-800"/>
+    <button class="px-2 py-1 bg-blue-600"
+            type="submit">
+      Login
+    </button>
+  </form>
+</div>
+{% endblock %}
