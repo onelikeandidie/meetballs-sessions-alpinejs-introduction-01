@@ -88,6 +88,10 @@ export default (app) => {
         ]);
     });
 
+    router.get('/playground', async (ctx, _next) => {
+        await ctx.render('playground');
+    });
+
     // TOOTER
     router.get('/tooter', async (ctx, _next) => {
         if (ctx.session.user === undefined) {
