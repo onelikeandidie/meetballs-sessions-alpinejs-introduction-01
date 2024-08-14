@@ -87,9 +87,6 @@ app.use(async (ctx, next) => {
   if (ctx.session !== undefined && ctx.session.user !== undefined) {
     ctx.state.user = ctx.session.user;
   }
-  // Attach csrf token to ctx.state
-  console.log(ctx.state);
-  ctx.state.csrf = ctx.state._csrf;
   await next();
 });
 
