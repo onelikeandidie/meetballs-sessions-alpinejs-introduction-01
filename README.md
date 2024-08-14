@@ -17,6 +17,15 @@ npm run serve
 PORT=3000 npm run serve
 ```
 
+**Make sure you have node.js version 20.11 or higher** as I didn't know
+`imports.meta.dirname` was not available in earlier versions. You can check
+your version with
+
+```bash
+node --version
+# v20.16.0 for example
+```
+
 You can access the server at `http://localhost:8000` which will show you the
 home page introducing AlpineJS.
 
