@@ -39,7 +39,6 @@ export default (app) => {
                 code[parseInt(sectionNumber)] = section.trim();
             }
         }
-        console.log(code);
 
         await ctx.render('home', {
             code
